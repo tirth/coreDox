@@ -1,4 +1,4 @@
-coreDox.Console
+coreDox
 ---
 CLI to use coreDox.  
 Uses *CommandLineParser* to parse the commandline arguments and to provide the usage 

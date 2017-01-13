@@ -7,7 +7,7 @@
         {
             "taskName": "build",
             "args": [
-                "${workspaceRoot}\\src\\coreDox.Console\\coreDox.Console.csproj"
+                "${workspaceRoot}\\src\\coreDox\\coreDox.csproj"
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"

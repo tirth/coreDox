@@ -16,4 +16,9 @@
     <PackageReference Include="Microsoft.NETCore.App" Version="1.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\coreDox.Model\coreDox.Model.csproj" />
+    <ProjectReference Include="..\coreDox.Contracts\coreDox.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

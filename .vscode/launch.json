@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceRoot}\\src\\coreDox.Console\\bin\\Debug\\netcoreapp1.0\\coreDox.Console.dll",
+            "program": "${workspaceRoot}\\src\\coreDox\\bin\\Debug\\netcoreapp1.0\\coreDox.dll",
             "args": [],
             "cwd": "${workspaceRoot}",
             "externalConsole": false,
