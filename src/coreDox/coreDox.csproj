@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.2.1" />
+    <PackageReference Include="CommonMark.NET" Version="0.14.0" />
     <PackageReference Include="CommandLineParser" Version="2.1.1-beta" />
     <PackageReference Include="Microsoft.NETCore.App" Version="1.0.1" />
   </ItemGroup>
