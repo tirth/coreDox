@@ -16,7 +16,7 @@ Contains the whole model of coreDox. This includes the parsed tree objects.
 coreDox.Contracts
 ---
 This project contains all interfaces used within coreDox.  
-The project can easily be referenced to create custom directives or verb for coreDox.
+The project can easily be referenced to create custom directives or writers for coreDox.
 
 coreDox.Verb.New
 ---
