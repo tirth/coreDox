@@ -9,6 +9,15 @@ Available core verbs:
 - **build** *builds a coreDox project in the current path or a given one*
 - **watch** *builds a coreDox project in the current path or a given one and autmatically refreshes the output on change of a project file*
 
+coreDox.Model
+---
+Contains the whole model of coreDox. This includes the parsed tree objects.
+
+coreDox.Contracts
+---
+This project contains all interfaces used within coreDox.  
+The project can easily be referenced to create custom directives or verb for coreDox.
+
 coreDox.Verb.New
 ---
 This project contains the logic of the **new** verb.
@@ -24,12 +33,9 @@ coreDox.Verb.Watch
 This project contains the logic of the **watch** verb.
 If the **watch** verb is used, the **coreDox.Verb.Watch.Watcher** is called.
 
-coreDox.Model
+coreDox.Writer.Html
 ---
-Contains the whole model of coreDox. This includes the parsed tree objects.
+The default writer for coreDox. Exports the parsed project to a static html page.
 
-coreDox.Contracts
----
-This project contains all interfaces used within coreDox.  
-The project can easily be referenced to create custom directives or verb for coreDox.
+
 
