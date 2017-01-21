@@ -1,4 +1,7 @@
 using System;
+using System.Linq;
+
+using coreArgs;
 using coreDox.Model;
 
 namespace coreDox
@@ -8,34 +11,18 @@ namespace coreDox
         static int Main(string[] args)
         {       
             var exitCode = ExitCode.Success;
-            CommandLineArgs commandLineArgs;
-            if(CommandLineArgs.TryParse(args, out commandLineArgs))
+            var options = ArgsParser.Parse<CommandLineOptions>(args);
+            if(options.Errors.Count > 0)
             {
-                exitCode = Execute(commandLineArgs);
+                exitCode = ExitCode.InvalidArgs;
+                options.Errors.ForEach(e => Console.WriteLine(e.Message));
+                Console.WriteLine(Environment.NewLine);
+                Console.WriteLine(ArgsParser.GetHelpText<CommandLineOptions>());
             }
             else{
-                Console.WriteLine("Couldn't parse arguments. Valid options are:");
-                exitCode = ExitCode.InvalidArgs;
+                
             }
             return (int)exitCode;
-        }
-
-        private static ExitCode Execute(CommandLineArgs commandLineArgs)
-        {
-            var exitCode = ExitCode.Success;
-            if(commandLineArgs.HelpArgument != null)
-            {
-                commandLineArgs.HelpArgument.PrintHelp();
-            }
-            else if(commandLineArgs.VersionArgument != null)
-            {
-                commandLineArgs.VersionArgument.PrintVersionInfo();
-            }
-            else if(commandLineArgs.VerbArgument != null)
-            {
-                exitCode = commandLineArgs.VerbArgument.ExecuteVerb(commandLineArgs.RemainingArgs);
-            }
-            return exitCode;
         }
     }
 }

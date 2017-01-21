@@ -11,7 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NETCore.App" Version="1.0.1" />
+    <PackageReference Include="coreArgs" Version="1.0.0" />
+    <PackageReference Include="Microsoft.NETCore.App" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>

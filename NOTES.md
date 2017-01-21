@@ -1,16 +1,11 @@
 coreDox
 ---
 CLI to use coreDox.  
-The CLI is a basic application which dispatches the different verbs to the corresponding applications.
-Each verb is a own application. The CLI implements a basic command line arguments parser to identify the
-verb to run and passes the remaining arguments to the verb application.
+The CLI is a basic application which dispatches the different commands to the corresponding tasks.
+Everything called with the CLI is a task. Tasks can be defined by users by a config file.
 
-The individual verbs should use **CommandLineParser** to parse the handed arguments.
-
-Available core verbs:
-- **new** *starts a wizard to create a new coreDox project*
-- **build** *builds a coreDox project in the current path or a given one*
-- **watch** *builds a coreDox project in the current path or a given one and autmatically refreshes the output on change of a project file*
+coreDox provides one default task.
+- **new --scaffold [scaffold-name]** *starts a wizard to create a new coreDox project*
 
 coreDox.Model
 ---
@@ -56,7 +51,20 @@ If the **watch** verb is used, the **coreDox.Verb.Watch.Watcher** is called.
 
 coreDox.Writer.Html
 ---
-The default writer for coreDox. Exports the parsed project to a static html page.
+The default writer for coreDox. Exports the parsed project to a html page.
 
+
+
+
+
+**sharpDox** used *roslyn* to compile any given solution and to analyze the code. 
+If **sharpDox** was integrated in a build process, the build server had to compile the solution twice.
+Once for the build itself and a second time for **sharpDox**. This is useless overhead and **codeDox** tries to 
+eliminate this by using **cecil** to analyze precompiled *.dlls, *.pdbs & *.xmls (for the code documentation).
+
+The code documentation feature is a *plug* used by the **coreDox-build** tool. *Plugs* are custom pluggable tools
+which can be used during the build process of a **coreDox** project. During the build process **coreDox** passes
+the parsed files to all *plugs* registered in the **config.cs**. The *plugs* are able to do modifications on already parsed
+files and to add new, on-the-fly, generated files. 
 
 
