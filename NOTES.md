@@ -5,7 +5,16 @@ The CLI is a basic application which dispatches the different commands to the co
 Everything called with the CLI is a task. Tasks can be defined by users by a config file.
 
 coreDox provides one default task.
-- **new --scaffold [scaffold-name]** *starts a wizard to create a new coreDox project*
+- **new --type [scaffold-name]** *starts a wizard to create a new coreDox project*
+- **install --scaffold [scaffold-name]** *installs the given scaffold into the coreDox folder*
+
+Plug have a Execute Method taking a File List and Returning one
+
+SrcPlug -> Src(string path) -> takes a pattern for a folder, reads all files fitting the pattern and passes them to the next plug
+WizardPlug -> Wizard(string scaffoldName)
+
+Package(string filePattern)
+ -> Plug(IPlug.Execute : Package)
 
 coreDox.Model
 ---

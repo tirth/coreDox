@@ -19,8 +19,10 @@ namespace coreDox
                 Console.WriteLine(Environment.NewLine);
                 Console.WriteLine(ArgsParser.GetHelpText<CommandLineOptions>());
             }
-            else{
-                
+            else if(options.Arguments.Tasks.Count > 0)
+            {
+                var taskRunner = new TaskRunner();
+                taskRunner.RunTask(options.Arguments.Tasks.First(), options.Arguments.PlugOptions);
             }
             return (int)exitCode;
         }
