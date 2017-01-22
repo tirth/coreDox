@@ -1,4 +1,4 @@
-﻿namespace coreDox.Model
+﻿namespace coreDox.Core.Model
 {
     public enum ExitCode : int {
         Success = 0,

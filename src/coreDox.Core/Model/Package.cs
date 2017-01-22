@@ -1,7 +1,10 @@
+using System;
 using System.IO;
 using System.Collections.Generic;
 
-namespace coreDox
+using coreDox.Core.Contracts;
+
+namespace coreDox.Core.Model
 {
     public class Package
     {
@@ -15,6 +18,8 @@ namespace coreDox
 
         public Package(string folder, string filePattern)
         {
+            if(!Directory.Exists(folder)) throw new DirectoryNotFoundException("Folder not Found");
+
             Folder = folder;
             FilePattern = filePattern;
             LoadFiles();

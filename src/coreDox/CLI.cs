@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 
 using coreArgs;
-using coreDox.Model;
+using coreDox.Core.Model;
 
 namespace coreDox
 {

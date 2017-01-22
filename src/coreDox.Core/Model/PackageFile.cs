@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace coreDox
+namespace coreDox.Core.Model
 {
     public class PackageFile
     {

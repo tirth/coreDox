@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 
-namespace coreDox
+using coreDox.Core.Model;
+
+namespace coreDox.Core.Contracts
 {
     public interface IPlug
     {

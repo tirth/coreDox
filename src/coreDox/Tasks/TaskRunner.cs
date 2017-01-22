@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using coreDox.Plugs;
+using coreDox.Core.Model;
 
 namespace coreDox
 {

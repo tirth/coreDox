@@ -12,5 +12,8 @@
   <ItemGroup>
     <PackageReference Include="NETStandard.Library" Version="1.6" />
   </ItemGroup>
-
+    
+  <ItemGroup>
+    <ProjectReference Include="..\coreDox.Core\coreDox.Core.csproj" />
+  </ItemGroup>
 </Project>
