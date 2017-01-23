@@ -13,5 +13,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\coreDox.Core\coreDox.Core.csproj" />
+    <ProjectReference Include="..\[Plugs]\coreDox.Plugs.Installer\coreDox.Plugs.Installer.csproj" />
+    <ProjectReference Include="..\[Plugs]\coreDox.Plugs.Wizard\coreDox.Plugs.Wizard.csproj" />
   </ItemGroup>
 </Project>
