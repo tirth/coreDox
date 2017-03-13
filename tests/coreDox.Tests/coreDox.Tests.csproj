@@ -1,19 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>    
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="**\*.cs" />
-    <EmbeddedResource Include="**\*.resx" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.1.11" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.1.11" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NETCore.App" Version="1.0.3" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0-preview-20161123-03" />
-    <PackageReference Include="MSTest.TestAdapter" Version="1.1.5-preview" />
-    <PackageReference Include="MSTest.TestFramework" Version="1.0.6-preview" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\coreDox\coreDox.csproj" />
-  </ItemGroup>
+
 </Project>

@@ -1,21 +1,20 @@
-using System.Collections.Generic;
-
-using coreArgs.Attributes;
+using CommandLine;
+using CommandLine.Text;
 
 namespace coreDox
 {
-    public class CommandLineOptions
+    [Verb("new", HelpText = "Create a new coreDox project.")]
+    class NewOptions 
     {
-        [Option('h', "help", "Prints this help text.")]
-        public bool Help { get; set; }
+    }
 
-        [Option("scaffolds", "Prints all available scaffolds.")]
-        public bool Scaffold { get; set; }
-
-        [RemainingOptions]
-        public dynamic PlugOptions { get; set; }
-
-        [BinOptions]
-        public List<string> Tasks { get; set; }
+    [Verb("build", HelpText = "Build the coreDox project in the current or given directory.")]
+    class BuildOptions 
+    {
+    }
+    
+    [Verb("watch", HelpText = "Builds and watches the coreDox project in the current or given directory.")]
+    class WatchOptions 
+    {
     }
 }

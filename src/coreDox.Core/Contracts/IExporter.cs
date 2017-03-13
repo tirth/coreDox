@@ -4,8 +4,8 @@ using coreDox.Core.Model;
 
 namespace coreDox.Core.Contracts
 {
-    public interface IPlug
+    public interface IExporter
     {
-        void Execute(List<PackageFile> packageFiles);
+        void Export();
     }
 }
