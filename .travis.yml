@@ -9,6 +9,6 @@ before_script:
   - sudo apt-get install dotnet-dev-1.0.1
 script:
   - dotnet restore src/coreDox/coreDox.csproj
-  - dotnet restore tests/coreDox.Tests.csproj
-  - dotnet test tests/coreDox.Tests.csproj
+  - dotnet restore tests/coreDox.Test/coreDox.Tests.csproj
+  - dotnet test tests/coreDox.Test/coreDox.Tests.csproj
   - dotnet build src/coreDox/coreDox.csproj
