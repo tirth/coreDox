@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using coreDox.Core.Model.Documentation;
+using NLog;
 
 namespace coreDox.New
 {
@@ -10,11 +11,19 @@ namespace coreDox.New
         {
             if(!string.IsNullOrEmpty(newOptions.Exporter))
             {
-                
+                _logger.Info($"Adding '{newOptions.Exporter}' to project in folder '{newOptions.DocFolder}' ...");
+
+                var doxProject = DoxProject.Load(newOptions.DocFolder);
+                doxProject.Save();
+
+                _logger.Info("Exporter added successfully!");
             }
             else
             {
                 _logger.Info($"Creating a new project in folder '{newOptions.DocFolder}' ...");
+
+                DoxProject.New(newOptions.DocFolder);
+
                 _logger.Info("Project created successfully!");
             }
         }
