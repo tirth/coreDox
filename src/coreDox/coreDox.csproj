@@ -17,4 +17,10 @@
     <ProjectReference Include="..\coreDox.Core\coreDox.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -1,12 +1,11 @@
-using System;
-using System.Linq;
-
 using CommandLine;
+using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
+
 using coreDox.Build;
 using coreDox.New;
 using coreDox.Watch;
 using coreDox.Core.Model;
-using Microsoft.Extensions.Logging;
 
 namespace coreDox
 {
@@ -16,7 +15,7 @@ namespace coreDox
         {       
             var exitCode = ExitCode.Success;
 
-            var loggerFactory = new LoggerFactory().AddConsole();
+            var loggerFactory = new LoggerFactory().AddNLog();
             var logger = loggerFactory.CreateLogger<CLI>();
             logger.LogInformation("This is a test of the emergency broadcast system.");
             logger.LogWarning("This is a test of the emergency broadcast system.");
