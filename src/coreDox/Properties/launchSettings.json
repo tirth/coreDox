@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "coreDox": {
+      "commandName": "Project",
+      "commandLineArgs": "new --doc doc"
+    }
+  }
+}
