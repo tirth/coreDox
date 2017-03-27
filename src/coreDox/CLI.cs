@@ -13,9 +13,6 @@ namespace coreDox
     {
         static int Main(string[] args)
         {
-            //var serviceProvider = new ServiceCollection().AddTransient()
-
-
             var exitCode = ExitCode.Success;
             
             var logger = LogManager.GetLogger("CLI");
@@ -27,8 +24,7 @@ namespace coreDox
                 .WithParsed<BuildOptions>(opts => new BuildVerb(opts))
                 .WithParsed<WatchOptions>(opts => new WatchVerb(opts))
                 .WithNotParsed(errs => {
-                    exitCode = ExitCode.InvalidArgs;
-                    
+                    exitCode = ExitCode.InvalidArgs;                    
                 });
 
             return (int)exitCode;

@@ -12,7 +12,7 @@ namespace coreDox.Core.Tests
         public void ShouldGetRegisteredExporterSuccessfully()
         {
             //Arrange
-            var exporterService = new ExporterService();
+            var exporterService = ServiceLocator.GetService<ExporterService>();
 
             //Act
             var exporter = exporterService.GetRegisteredExporters();
