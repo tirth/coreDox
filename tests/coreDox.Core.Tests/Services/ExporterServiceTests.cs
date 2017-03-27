@@ -6,7 +6,7 @@ using System.Linq;
 namespace coreDox.Core.Tests
 {
     [TestClass]
-    public class ExporterSericeTests
+    public class ExporterServiceTests
     {
         [TestMethod]
         public void ShouldGetRegisteredExporterSuccessfully()
