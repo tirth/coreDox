@@ -5,13 +5,17 @@ using coreDox.New;
 using coreDox.Watch;
 using coreDox.Core.Model;
 using NLog;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace coreDox
 {
     public class CLI
     {
         static int Main(string[] args)
-        {       
+        {
+            //var serviceProvider = new ServiceCollection().AddTransient()
+
+
             var exitCode = ExitCode.Success;
             
             var logger = LogManager.GetLogger("CLI");
