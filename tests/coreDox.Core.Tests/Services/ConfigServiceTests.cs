@@ -2,6 +2,7 @@ using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using coreDox.Core.Services;
 using System.Linq;
+using coreDox.Core.Model.Documentation;
 
 namespace coreDox.Core.Tests
 {
@@ -9,17 +10,16 @@ namespace coreDox.Core.Tests
     public class ConfigServiceTests
     {
         [TestMethod]
-        public void ShouldGetCLIConfigSuccessfully()
+        public void ShouldGetDoxConfigSuccessfully()
         {
             //Arrange
             var configService = ServiceLocator.GetService<ConfigService>();
 
             //Act
-            configService.RegisterConfig(new CLIConfig());
-            var cliConfig = configService.GetConfig<CLI>();
+            var doxConfig = configService.GetConfig<DoxProject>();
 
             //Assert
-            Assert.IsNotNull(cliConfig);
+            Assert.IsNotNull(doxConfig);
         }
     }
 }
