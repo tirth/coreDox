@@ -15,7 +15,7 @@ namespace coreDox.Core.Tests
             var exporterService = ServiceLocator.GetService<ExporterService>();
 
             //Act
-            var exporter = exporterService.GetRegisteredExporters();
+            var exporter = exporterService.RegisteredExporter;
 
             //Assert
             Assert.IsTrue(exporter.Count == 1);

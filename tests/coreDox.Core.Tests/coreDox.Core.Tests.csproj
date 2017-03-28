@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\coreDox.Core\coreDox.Core.csproj" />
+    <ProjectReference Include="..\..\src\coreDox\coreDox.csproj" />
   </ItemGroup>
 
   <ItemGroup>

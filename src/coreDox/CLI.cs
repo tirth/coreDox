@@ -4,8 +4,6 @@ using coreDox.Build;
 using coreDox.New;
 using coreDox.Watch;
 using coreDox.Core.Model;
-using NLog;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace coreDox
 {
@@ -15,10 +13,6 @@ namespace coreDox
         {
             var exitCode = ExitCode.Success;
             
-            var logger = LogManager.GetLogger("CLI");
-            logger.Info("This is a test of the emergency broadcast system.");
-            logger.Warn("This is a test of the emergency broadcast system.");
-
             Parser.Default.ParseArguments<NewOptions, BuildOptions, WatchOptions>(args)
                 .WithParsed<NewOptions>(opts => new NewVerb(opts))
                 .WithParsed<BuildOptions>(opts => new BuildVerb(opts))

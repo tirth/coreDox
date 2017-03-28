@@ -19,6 +19,8 @@ namespace coreDox.Core.Services
         private static void BuildServiceProvider()
         {
             _serviceProvider = new ServiceCollection()
+                .AddSingleton<PluginDiscoveryService>()
+                .AddSingleton<ConfigService>()
                 .AddSingleton<ExporterService>()
                 .BuildServiceProvider();
         }
