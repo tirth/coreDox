@@ -1,7 +1,11 @@
 ﻿using coreDox.Core.Exceptions;
 using coreDox.Core.Model.Documentation;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 
@@ -22,7 +26,21 @@ namespace coreDox.Core.Services
 
         public void LoadConfig(string configPath)
         {
+            if (!File.Exists(configPath)) throw new CoreDoxException($"No config found at: {configPath}");
+
             _loadedConfigs = new List<object>();
+
+            var converter = new ExpandoObjectConverter();
+            var jsonConfig = JsonConvert.DeserializeObject<ExpandoObject>(File.ReadAllText(configPath), converter);
+            foreach(var config in jsonConfig)
+            {
+                var configType = _configTypes.SingleOrDefault(c => c.Name.Equals(config.Key, StringComparison.OrdinalIgnoreCase));
+                if(configType != null)
+                {
+                    var serializedSubConfig = JsonConvert.SerializeObject(config.Value);
+                    _loadedConfigs.Add(JsonConvert.DeserializeObject(serializedSubConfig, configType));
+                }
+            }
         }
 
         public T GetConfig<T>()
