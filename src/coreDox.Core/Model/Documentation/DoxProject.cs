@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using coreDox.Core.Services;
+using System.Collections.Generic;
 
 namespace coreDox.Core.Model.Documentation
 {
@@ -31,7 +32,11 @@ namespace coreDox.Core.Model.Documentation
         /// <returns>The loaded <c>DoxProject</c>.</returns>
         public static DoxProject Load(string docFolder)
         {
+            var configService = ServiceLocator.GetService<ConfigService>();
+
             var doxProject = new DoxProject { DocFolder = docFolder };
+            doxProject.Config = configService.GetConfig<DoxConfig>();
+
             return doxProject;
         }
 
