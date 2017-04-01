@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace coreDox.Build
+namespace coreDox.Parser
 {
     public class Class1
     {
