@@ -18,9 +18,9 @@ namespace coreDox.Core.Services
             _possibleExporterDllFiles = Directory.GetFiles(_exporterFolder, "*.dll", SearchOption.AllDirectories);
         }
 
-        public List<IExporter> GetAllExporterPlugins()
+        public List<Type> GetAllExporterPlugins()
         {
-            var exporter = new List<IExporter>();
+            var exporter = new List<Type>();
             
             foreach (var possibleExporterDllFile in _possibleExporterDllFiles)
             {
@@ -31,11 +31,10 @@ namespace coreDox.Core.Services
             return exporter;
         }
 
-        private List<T> GetTypesWithInterface<T>(Assembly assembly)
+        private List<Type> GetTypesWithInterface<T>(Assembly assembly)
         {
             return assembly.GetTypes()
                 .Where(t => t.GetInterfaces().Any(i => i == typeof(T)))
-                .Select(t => (T)Activator.CreateInstance(t))
                 .ToList();
         }
     }

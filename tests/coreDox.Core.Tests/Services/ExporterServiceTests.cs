@@ -15,11 +15,11 @@ namespace coreDox.Core.Tests
             var exporterService = ServiceLocator.GetService<ExporterService>();
 
             //Act
-            var exporter = exporterService.RegisteredExporter;
+            var exporter = exporterService.RegisteredExporterTypes;
 
             //Assert
             Assert.IsTrue(exporter.Count == 1);
-            Assert.AreEqual("Html", exporter.First().ExporterName);
+            Assert.AreEqual("HtmlExporter", exporter.First().Name);
         }
     }
 }
