@@ -18,19 +18,6 @@ namespace coreDox.Core.Services
             _possibleExporterDllFiles = Directory.GetFiles(_exporterFolder, "*.dll", SearchOption.AllDirectories);
         }
 
-        public List<IConfig> GetAllConfigPlugins()
-        {
-            var configs = new List<IConfig>();
-
-            foreach (var possibleExporterDllFile in _possibleExporterDllFiles)
-            {
-                var possibleExporterAssembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(possibleExporterDllFile);
-                configs.AddRange(GetTypesWithInterface<IConfig>(possibleExporterAssembly));
-            }
-
-            return configs;
-        }
-
         public List<IExporter> GetAllExporterPlugins()
         {
             var exporter = new List<IExporter>();

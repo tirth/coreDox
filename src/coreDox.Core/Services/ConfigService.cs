@@ -1,5 +1,6 @@
-﻿using coreDox.Core.Contracts;
+﻿using coreDox.Core.Exceptions;
 using coreDox.Core.Model.Documentation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -8,27 +9,40 @@ namespace coreDox.Core.Services
 {
     public class ConfigService
     {
-        private readonly PluginDiscoveryService _pluginDiscoveryService;
+        private List<object> _loadedConfigs = new List<object>();
+        private List<Type> _configTypes = new List<Type>();
+
+        private readonly ExporterService _exporterService;
 
         public ConfigService()
         {
-            _pluginDiscoveryService = ServiceLocator.GetService<PluginDiscoveryService>();
-
-            RegisteredConfigs = _pluginDiscoveryService.GetAllConfigPlugins();
-            RegisteredConfigs.Add(new DoxConfig());
+            _exporterService = ServiceLocator.GetService<ExporterService>();
+            FindConfigTypes();
         }
 
-        public void RegisterConfig<T>(T config) where T : IConfig
+        public void LoadConfig(string configPath)
         {
-            RegisteredConfigs.Add(config);
+            _loadedConfigs = new List<object>();
         }
 
-        public IConfig<T> GetConfig<T>()
+        public T GetConfig<T>()
         {
-            return (IConfig<T>)RegisteredConfigs
-                .Single(e => e.GetType().GetInterfaces().Where(i => i.GenericTypeArguments.Any(g => g == typeof(T))) != null);
+            if (_loadedConfigs.Count == 0) throw new CoreDoxException("No config loaded!");
+            return (T)_loadedConfigs.Single(l => l.GetType() == typeof(T));
         }
-         
-        public List<IConfig> RegisteredConfigs { get; }
+
+        private void FindConfigTypes()
+        {
+            _configTypes.Add(typeof(DoxConfig));
+            foreach(var exporterType in _exporterService.RegisteredExporterTypes)
+            {
+                var exporterInterface = exporterType.GetInterfaces().SingleOrDefault(i => i.Name == "IExporter");
+                if(exporterInterface != null)
+                {
+                    var configType = exporterInterface.GenericTypeArguments.FirstOrDefault();
+                    if (configType != null) _configTypes.Add(configType);
+                }
+            }
+        }
     }
 }

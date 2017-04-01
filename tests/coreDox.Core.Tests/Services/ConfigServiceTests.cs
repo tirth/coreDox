@@ -16,7 +16,7 @@ namespace coreDox.Core.Tests
             var configService = ServiceLocator.GetService<ConfigService>();
 
             //Act
-            var doxConfig = configService.GetConfig<DoxProject>();
+            var doxConfig = configService.GetConfig<DoxConfig>();
 
             //Assert
             Assert.IsNotNull(doxConfig);

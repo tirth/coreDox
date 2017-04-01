@@ -1,14 +1,18 @@
 ﻿using coreDox.Core.Contracts;
-using System;
+using coreDox.Core.Model.Documentation;
 
 namespace coreDox.Exporter.Html
 {
-    public class HtmlExporter : IExporter
+    public class HtmlExporter : IExporter<HtmlConfig>
     {
-        public void Export()
+        public void Export(string outputPath)
         {
-            throw new NotImplementedException();
+            
         }
+
+        public DoxProject DoxProject { get; set; }
+
+        public HtmlConfig HtmlConfig { get; set; }
 
         public string ExporterName => "Html";
     }

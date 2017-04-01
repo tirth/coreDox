@@ -1,11 +1,6 @@
-﻿using coreDox.Core.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace coreDox.Core.Model.Documentation
+﻿namespace coreDox.Core.Model.Documentation
 {
-    public class DoxConfig : IConfig<DoxProject>
+    public class DoxConfig
     {
         public string ProjectName { get; set; }
     }
