@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using coreDox.Core.Services;
-using coreDox.Core.Model.Documentation;
 using System.IO;
+using coreDox.Core.Model.Project;
 
 namespace coreDox.Core.Tests
 {

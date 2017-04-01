@@ -1,5 +1,5 @@
 ﻿using coreDox.Core.Exceptions;
-using coreDox.Core.Model.Documentation;
+using coreDox.Core.Model.Project;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;

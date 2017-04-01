@@ -1,7 +1,7 @@
 ﻿using coreDox.Core.Services;
 using System.Collections.Generic;
 
-namespace coreDox.Core.Model.Documentation
+namespace coreDox.Core.Model.Project
 {
     /// <summary>
     /// The <c>DoxProject</c> is the root object of a documentation project.
@@ -43,21 +43,26 @@ namespace coreDox.Core.Model.Documentation
         /// <summary>
         /// The folder containing the documentation project.
         /// </summary>
-        public string DocFolder { get; set; }
+        public string DocFolder { get; private set; }
 
         /// <summary>
         /// The documentation config.
         /// </summary>
-        public DoxConfig Config { get; set; }
+        public DoxConfig Config { get; private set; }
 
         /// <summary>
         /// The table of contents of the documentation.
         /// </summary>
-        public DoxTOC TOC { get; set; }
+        public DoxTOC TOC { get; private set; }
 
         /// <summary>
         /// All additional pages of the documentation.
         /// </summary>
-        public List<DoxPage> DocPages { get; set; }
+        public List<DoxPage> DocPages { get; private set; }
+
+        /// <summary>
+        /// The Repository contains all parsed code project types.
+        /// </summary>
+        public DoxRepository DoxRepository { get; private set; }
     }
 }

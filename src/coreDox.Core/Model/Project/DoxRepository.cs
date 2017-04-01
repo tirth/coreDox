@@ -4,7 +4,7 @@ using System.Text;
 
 namespace coreDox.Core.Model.Project
 {
-    public class DoxPage
+    public class DoxRepository
     {
     }
 }

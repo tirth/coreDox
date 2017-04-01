@@ -1,4 +1,4 @@
-﻿using coreDox.Core.Model.Documentation;
+﻿using coreDox.Core.Model.Project;
 using NLog;
 
 namespace coreDox.New
