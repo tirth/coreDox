@@ -41,7 +41,7 @@ The project can be referenced to create custom exporters for coreDox.
 This project also contains the core functionality of **coreDox**.
 The functionality is structured into different services:
 
-- **ConfigService** *Service to load, save and use documentation projects in code*
+- **ConfigService** *Service to load, save and use documentation configs*
 - **ContentService** *Service to load additional pages in the **pages** folder of a documentation project and for parsing the toc file*
 - **ExporterService** *Service to manage registered exporters*
 - **ParserService** *Service to parse the XML documentation and IL Code of a compiled .NET Project*
