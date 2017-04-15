@@ -4,10 +4,21 @@
 Create .NET code documentation with ease
 ------------------
 
+**coreDox** is a documentation tool to create .NET code documentation. The tool creates a model of a given solution and passes it to the registered export plugins. The plugins transform the model to a defined output. **coreDox** comes with a html export plugin which demonstrate the possibilities of the tool.
+
+**coreDox** is a complete rewrite of [**sharpDox**](https://github.com/geaz/sharpDox) for .NET Core.
+
+Why rewrite?
+---
+
 **sharpDox** used *roslyn* to compile a given solution and to analyze the code. 
 If **sharpDox** was integrated in a build process, the build server had to compile the solution twice.
 Once for the build itself and a second time for **sharpDox**. This is useless overhead and **codeDox** tries to 
 eliminate this by using **cecil** to analyze precompiled *.dlls, *.pdbs & *.xmls (for the code documentation).
+
+It would be possible to accomplish this without a complete rewrite, but **sharpDox** was started as a learning project and has grown within the last few years in such a way that I don't like the code base anymore.
+
+The aim of **coreDox** is to create a cleaner and more maintainable solution. I hope that this will also attract some more people to contribute to **coreDox**.
 
 Project structure
 ---
