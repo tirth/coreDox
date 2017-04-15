@@ -1,4 +1,7 @@
-Create code documentation with ease
+[![Build Status](https://travis-ci.org/geaz/coreDox.svg?branch=dev)](https://travis-ci.org/geaz/coreDox)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/Geaz/coreArgs/master/LICENSE)
+
+Create .NET code documentation with ease
 ------------------
 
 **sharpDox** used *roslyn* to compile a given solution and to analyze the code. 
