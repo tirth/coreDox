@@ -4,7 +4,7 @@ using System.Text;
 
 namespace coreDox.Core.Services
 {
-    public class ParseService
+    public class ParserService
     {
     }
 }

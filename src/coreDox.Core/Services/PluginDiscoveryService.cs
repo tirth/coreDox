@@ -8,6 +8,9 @@ using System.Runtime.Loader;
 
 namespace coreDox.Core.Services
 {
+    /// <summary>
+    /// This service is responsible for the discovery of all **coreDox** plugins.
+    /// </summary>
     public class PluginDiscoveryService
     {
         private readonly string[] _possibleExporterDllFiles;
@@ -18,6 +21,10 @@ namespace coreDox.Core.Services
             _possibleExporterDllFiles = Directory.GetFiles(_exporterFolder, "*.dll", SearchOption.AllDirectories);
         }
 
+        /// <summary>
+        /// Gets a list of all available exporter types.
+        /// </summary>
+        /// <returns>List of exporter types</returns>
         public List<Type> GetAllExporterPlugins()
         {
             var exporter = new List<Type>();

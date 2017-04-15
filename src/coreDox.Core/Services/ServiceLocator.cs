@@ -22,6 +22,8 @@ namespace coreDox.Core.Services
                 .AddSingleton<PluginDiscoveryService>()
                 .AddSingleton<ConfigService>()
                 .AddSingleton<ExporterService>()
+                .AddSingleton<ContentService>()
+                .AddSingleton<ParserService>()
                 .BuildServiceProvider();
         }
     }

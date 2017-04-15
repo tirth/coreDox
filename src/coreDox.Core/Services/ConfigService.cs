@@ -11,6 +11,9 @@ using System.Reflection;
 
 namespace coreDox.Core.Services
 {
+    /// <summary>
+    /// This service is responsible to load config files and to deliver certain sections in these files.
+    /// </summary>
     public class ConfigService
     {
         private List<object> _loadedConfigs = new List<object>();
@@ -18,12 +21,21 @@ namespace coreDox.Core.Services
 
         private readonly ExporterService _exporterService;
 
+        /// <summary>
+        /// The <c>ConfigService</c> uses the <seealso cref="ExporterService"/> to get all available <seealso cref="Contracts.IExporter{TConfig}"/>.
+        /// </summary>
         public ConfigService()
         {
             _exporterService = ServiceLocator.GetService<ExporterService>();
             FindConfigTypes();
         }
 
+        /// <summary>
+        /// Loads the given config file into the found config types.
+        /// The generic type paramter of the <seealso cref="Contracts.IExporter{TConfig}"/> is the config type used by a exporter.
+        /// The name of the config type is the key of the section in the config file.
+        /// </summary>
+        /// <param name="configPath">The config file to load</param>
         public void LoadConfig(string configPath)
         {
             if (!File.Exists(configPath)) throw new CoreDoxException($"No config found at: {configPath}");
@@ -43,6 +55,12 @@ namespace coreDox.Core.Services
             }
         }
 
+        /// <summary>
+        /// Return the loaded config section for the given config type <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the config section</typeparam>
+        /// <returns>A instance of the config type with the loaded config values</returns>
+        /// <remarks><see cref="LoadConfig(string)"/> has to be executed in advance!</remarks>
         public T GetConfig<T>()
         {
             if (_loadedConfigs.Count == 0) throw new CoreDoxException("No config loaded!");
