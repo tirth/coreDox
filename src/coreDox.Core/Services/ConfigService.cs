@@ -1,5 +1,4 @@
-﻿using coreDox.Core.Exceptions;
-using coreDox.Core.Model.Project;
+﻿using coreDox.Core.Model.Project;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
@@ -16,7 +15,6 @@ namespace coreDox.Core.Services
     /// </summary>
     public class ConfigService
     {
-        private List<object> _loadedConfigs = new List<object>();
         private List<Type> _configTypes = new List<Type>();
 
         private readonly ExporterService _exporterService;
@@ -29,6 +27,18 @@ namespace coreDox.Core.Services
             _exporterService = ServiceLocator.GetService<ExporterService>();
             FindConfigTypes();
         }
+        
+        /// <summary>
+        /// Return the loaded config section for the given config type <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the config section</typeparam>
+        /// <returns>A instance of the config type with the loaded config values</returns>
+        /// <remarks><see cref="LoadConfig(string)"/> has to be executed in advance!</remarks>
+        public T GetConfig<T>(string configPath)
+        {
+            var configSections = LoadConfig(configPath);
+            return (T)configSections.Single(l => l.GetType() == typeof(T));
+        }
 
         /// <summary>
         /// Loads the given config file into the found config types.
@@ -36,35 +46,22 @@ namespace coreDox.Core.Services
         /// The name of the config type is the key of the section in the config file.
         /// </summary>
         /// <param name="configPath">The config file to load</param>
-        public void LoadConfig(string configPath)
+        private List<object> LoadConfig(string configPath)
         {
-            if (!File.Exists(configPath)) throw new CoreDoxException($"No config found at: {configPath}");
-
-            _loadedConfigs = new List<object>();
+            var configSections = new List<object>();
 
             var converter = new ExpandoObjectConverter();
             var jsonConfig = JsonConvert.DeserializeObject<ExpandoObject>(File.ReadAllText(configPath), converter);
-            foreach(var config in jsonConfig)
+            foreach (var config in jsonConfig)
             {
                 var configType = _configTypes.SingleOrDefault(c => c.Name.Equals(config.Key, StringComparison.OrdinalIgnoreCase));
-                if(configType != null)
+                if (configType != null)
                 {
                     var serializedSubConfig = JsonConvert.SerializeObject(config.Value);
-                    _loadedConfigs.Add(JsonConvert.DeserializeObject(serializedSubConfig, configType));
+                    configSections.Add(JsonConvert.DeserializeObject(serializedSubConfig, configType));
                 }
             }
-        }
-
-        /// <summary>
-        /// Return the loaded config section for the given config type <typeparamref name="T"/>.
-        /// </summary>
-        /// <typeparam name="T">The type of the config section</typeparam>
-        /// <returns>A instance of the config type with the loaded config values</returns>
-        /// <remarks><see cref="LoadConfig(string)"/> has to be executed in advance!</remarks>
-        public T GetConfig<T>()
-        {
-            if (_loadedConfigs.Count == 0) throw new CoreDoxException("No config loaded!");
-            return (T)_loadedConfigs.Single(l => l.GetType() == typeof(T));
+            return configSections;
         }
 
         private void FindConfigTypes()

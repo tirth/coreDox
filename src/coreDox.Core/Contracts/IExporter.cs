@@ -13,6 +13,6 @@ namespace coreDox.Core.Contracts
 
     public interface IExporter<TConfig> : IExporter
     {
-        TConfig HtmlConfig { get; set; }
+        TConfig Config { get; set; }
     }
 }

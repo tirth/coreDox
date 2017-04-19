@@ -1,5 +1,7 @@
-﻿using coreDox.Core.Services;
+﻿using coreDox.Core.Exceptions;
+using coreDox.Core.Services;
 using System.Collections.Generic;
+using System.IO;
 
 namespace coreDox.Core.Model.Project
 {
@@ -9,9 +11,19 @@ namespace coreDox.Core.Model.Project
     /// </summary>
     public class DoxProject
     {
-        public void Save()
-        {
+        public const string ConfigFileName = "config.yaml";
+        public const string TOCFileName = "toc.md";
+        public const string AssetFolderName = "assets";
+        public const string PagesFolderName = "pages";
+        public const string LayoutFolderName = "layout";
 
+        public readonly ConfigService _configService = ServiceLocator.GetService<ConfigService>();
+        public readonly ContentService _contentService = ServiceLocator.GetService<ContentService>();
+
+        public DoxProject(string docFolder)
+        {
+            DocFolder = docFolder;
+            CheckFiles();
         }
 
         /// <summary>
@@ -21,23 +33,21 @@ namespace coreDox.Core.Model.Project
         /// <returns>The created <c>DocProject</c>.</returns>
         public static DoxProject New(string docFolder)
         {
-            var doxProject = new DoxProject { DocFolder = docFolder };
-            return doxProject;
+            //TODO CREATE DOC FOLDER
+            return new DoxProject(docFolder);
         }
 
-        /// <summary>
-        /// Loads the given documentation project folder.
-        /// </summary>
-        /// <param name="docFolder">The folder which contains the *coreDox* project.</param>
-        /// <returns>The loaded <c>DoxProject</c>.</returns>
-        public static DoxProject Load(string docFolder)
+        public void GetParsedCodeDocumentations()
         {
-            var configService = ServiceLocator.GetService<ConfigService>();
 
-            var doxProject = new DoxProject { DocFolder = docFolder };
-            doxProject.Config = configService.GetConfig<DoxConfig>();
+        }
 
-            return doxProject;
+        private void CheckFiles()
+        {
+            if(!File.Exists(ConfigFilePath) || !File.Exists(TOCFilePath))
+            {
+                throw new CoreDoxException($"Config file or TOC is missing in documentation folder! ({DocFolder})");
+            }
         }
 
         /// <summary>
@@ -46,23 +56,31 @@ namespace coreDox.Core.Model.Project
         public string DocFolder { get; private set; }
 
         /// <summary>
+        /// The file path to the config.yaml file
+        /// </summary>
+        public string ConfigFilePath => Path.Combine(DocFolder, ConfigFileName);
+
+        /// <summary>
+        /// The file path to the toc.md file
+        /// </summary>
+        public string TOCFilePath => Path.Combine(DocFolder, TOCFileName);
+
+        /// <summary>
         /// The documentation config.
         /// </summary>
-        public DoxConfig Config { get; private set; }
+        private DoxConfig _config;
+        public DoxConfig Config => _config ?? (_config = _configService.GetConfig<DoxConfig>(ConfigFilePath));
 
         /// <summary>
         /// The table of contents of the documentation.
         /// </summary>
-        public DoxTOC TOC { get; private set; }
+        private DoxTOC _toc;
+        public DoxTOC TOC => _toc ?? (_toc = _contentService.LoadTOC(TOCFilePath));
 
         /// <summary>
         /// All additional pages of the documentation.
         /// </summary>
-        public List<DoxPage> DocPages { get; private set; }
-
-        /// <summary>
-        /// The Repository contains all parsed code project types.
-        /// </summary>
-        public DoxRepository DoxRepository { get; private set; }
+        private List<DoxPage> _docPages;
+        public List<DoxPage> DocPages => _docPages ?? (_docPages = _contentService.LoadPages(Path.Combine(DocFolder, PagesFolderName)));
     }
 }

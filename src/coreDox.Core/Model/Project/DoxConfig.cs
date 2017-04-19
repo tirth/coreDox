@@ -6,6 +6,8 @@ namespace coreDox.Core.Model.Project
     {
         public string ProjectName { get; set; }
 
+        public string OutputFolder { get; set; }
+
         public List<string> DllFolders { get; set; }
     }
 }

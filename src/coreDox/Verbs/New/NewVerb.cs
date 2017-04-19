@@ -12,10 +12,6 @@ namespace coreDox.New
             if(!string.IsNullOrEmpty(newOptions.Exporter))
             {
                 _logger.Info($"Adding '{newOptions.Exporter}' to project in folder '{newOptions.DocFolder}' ...");
-
-                var doxProject = DoxProject.Load(newOptions.DocFolder);
-                doxProject.Save();
-
                 _logger.Info("Exporter added successfully!");
             }
             else
