@@ -12,7 +12,7 @@ namespace coreDox.Exporter.Html
 
         public DoxProject DoxProject { get; set; }
 
-        public HtmlConfig HtmlConfig { get; set; }
+        public HtmlConfig Config { get; set; }
 
         public string ExporterName => "Html";
     }

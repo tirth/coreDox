@@ -11,7 +11,7 @@ namespace coreDox.Core.Model.Project
     /// </summary>
     public class DoxProject
     {
-        public const string ConfigFileName = "config.yaml";
+        public const string ConfigFileName  = "config.yaml";
         public const string TOCFileName = "toc.md";
         public const string AssetFolderName = "assets";
         public const string PagesFolderName = "pages";
