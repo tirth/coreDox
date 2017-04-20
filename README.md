@@ -26,10 +26,9 @@ Project structure
 **coreDox**
 
 CLI to use coreDox.  
-The basic commands are:
+The commands are:
 
 - **new --doc [doc-folder]** *creates a new documentation project in the given path*
-- **new --exporter [exporter-name] --doc [doc-folder]** *adds the given exporter to the given documentation*
 - **build --doc [doc-folder]** *builds the documentation located in the given path*
 - **watch --doc [doc-folder]** *watches the documentation located in the given path, starts a web server to view it, and rebuilds the documentation on changes*
 
